@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>STI Queueing System</title>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="titleWithLogo">
+            <img src="https://ho.sti.edu/Images/sti-logo.png" alt="logo" id="stilogo">
+                <h1>STI Queueing System</h1>
+            </div>
+    </nav>
+    <section class="section1">
+    <div class="main">
+        <div class="current-number-container">
+            <% if (currentQueue.length > 0) { %>
+                <h1 style="color: rgb(47, 0, 255); font-size: 5vh; height: fit-content; text-align: left; font-style: italic;">CURRENTLY PROCESSING:</h1>
+                <h1 class="current-number"><%= currentQueue[0].queueNumber %></h1>
+            <% } %>
+            <% if (pendingQueue.length > 0) { %>
+                <h1 style="color: black; font-size: 5vh; height: fit-content; text-align: left; font-style: italic;">UP NEXT:</h1>
+                <div class="up-next" style="display: grid; grid-template-columns: repeat(6, 1fr); margin-left: 0;">
+                    <% pendingQueue.forEach(function(pQueueData) { %>
+                        <div class="up-next-item-view">
+                            <h2><%= pQueueData.queueNumber %></h2>
+                        </div>
+                    <% }) %>
+                </div>
+            <% } %>
+        </div>
+        
+    </div>
+</section>
+<script src="menu.js"></script>
+<script src="script.js"></script>
+<script>
+    setTimeout(() => {
+        location.reload();
+    }, 5000);
+</script>
+</body>
+</html>

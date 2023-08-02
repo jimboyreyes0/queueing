@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>STI Queueing System</title>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="titleWithLogo">
+            <img src="sti.png" alt="logo" id="stilogo">
+                <h1>STI Queueing System</h1>
+            </div>
+            
+            <div class="burgerContainer" onclick="toggleMenu()">
+                <img src="https://th.bing.com/th/id/OIP.MO13Yb2PjehyQD7s6Lsx_gHaHa?pid=ImgDet&rs=1" alt="logo" id="bugerBtn">
+            </div>
+            <div class="menu">
+                <a href="/logout">Logout</a>
+            </div>
+    </nav>
+    <section class="section1">
+    <div class="main">
+        <% if (currentQueue.length > 0) { %>
+            <div class="current-number-container">
+                <h1 class="current-number"><%= currentQueue[0].queueNumber %></h1>
+                <div class="btn-container">
+                    <% if (currentQueue[0].queueId) { %>
+                        <button data-current-value="<%= currentQueue[0].queueId %>" data-next-value="<%= pendingQueue[0]?.queueId %>" class="btn js-btn-unavailable" style="background-color: red;" type="button">Unavailable</button>
+                        <button data-current-value="<%= currentQueue[0].queueId %>" data-next-value="<%= pendingQueue[0]?.queueId %>" class="btn js-btn-done" style="background-color: green;" type="button">Done</button>
+                        <!-- <button data-current-value="<%= currentQueue[0].queueId %>" data-next-value="<%= pendingQueue[0]?.queueId %>" class="btn js-btn-break" style="background-color: yellow;" type="button">Break</button> -->
+                    <% } %>
+                </div>
+                <div class="info">
+                    <div>
+                        <% if (currentQueue[0].queuePurpose) { %>
+                            <h2>Purpose: <%= currentQueue[0].queuePurpose %></h2>
+                        <% } %>
+                        <% if (currentQueue[0].queueDescription) { %>
+                            <p><%= currentQueue[0].queueDescription %></p>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        
+        <% if (pendingQueue.length > 0 && currentQueue[0]?.queueId) { %>
+            <div class="up-next">
+                <h1>UP NEXT:</h1>
+                <% pendingQueue.forEach(function(pQueueData) { %>
+                    <div class="up-next-item">
+                        <% if (pQueueData.queueNumber) { %>
+                            <h2><%= pQueueData.queueNumber %></h2>
+                        <% } %>
+                        <% if (pQueueData.queuePurpose) { %>
+                            <h3>Purpose: <%= pQueueData.queuePurpose %></h3>
+                        <% } %>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+        
+        
+            
+          
+        </div>
+    </div>
+</section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="menu.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
